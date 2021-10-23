@@ -1,23 +1,29 @@
 package w4_23102021;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        int b = 9;
-        int a = 12;
-        System.out.println(dzielniki(a));
-        System.out.println(dzielniki(b));
-        System.out.println(NWD(dzielniki(a), dzielniki(b)));
-
-        System.out.println(NWD2(a, b));
-        System.out.println(leastCommonMultiple(a, b));
-
-        System.out.println(binaryToDecimals(1000));
-        System.out.println(decimalsToBinary(1234));
-
-        System.out.println(primes(100));
+//        int b = 9;
+//        int a = 12;
+//        System.out.println(dzielniki(a));
+//        System.out.println(dzielniki(b));
+//        System.out.println(NWD(dzielniki(a), dzielniki(b)));
+//
+//        System.out.println(NWD2(a, b));
+//        System.out.println(leastCommonMultiple(a, b));
+//
+//        System.out.println(binaryToDecimals(1000));
+//        System.out.println(decimalsToBinary(1234));
+//
+//        System.out.println(primes(100));
+//        System.out.println(printNumbersFromOneToInput());
+//        System.out.println(sum1());
+//        System.out.println(NValuesOfFibo(7));
+//        System.out.println(calculator());
+        pattern();
 
 
     }
@@ -130,4 +136,134 @@ public class Main {
         return counter;
     }
 
+    public static ArrayList<Integer> printNumbersFromOneToInput(){
+        ArrayList<Integer> lista = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj zakes drukowanych libcz");
+        int s1 = scanner.nextInt();
+        for(int i=1;i<=s1;i++){
+            lista.add(i);
+        }
+        return lista;
+    }
+
+    public static float sum1(){
+        float sum =0;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj n-ty wyraz ciągu harmonicznego");
+        int j= scanner.nextInt();
+        for(int i =1;i<=j;i++){
+            sum +=(float)1/i;
+        }
+
+        return sum;
+    }
+
+
+    public static int NValuesOfFibo(int n){
+        int a = 0, b = 1, licz = 0;
+        while (licz < n) {
+            int c = b + a;
+            a = b;
+            b = c;
+            licz++;
+        }
+        return a;
+    }
+
+
+    public static void fibo1(int n)
+    {
+        int a = 0, b = 1;
+        for(int i=0;i<n;i++)
+        {
+            b += a;
+            a = b-a;
+            System.out.println(a);
+        }
+    }
+
+    public static Float calculator(){
+
+        float n1=0;
+        float n2=0;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("podaj pierwszą liczbę");
+        String scan = scanner.nextLine();
+        n1 =Float.parseFloat(scan);
+
+        String sign = "";
+        boolean isRunning = true;
+        System.out.println("podaj znak");
+
+            while (isRunning) {
+                if(scanner.hasNext()) {
+                sign = scanner.nextLine();
+                switch (sign) {
+                    case "+":
+                        sign = "+";
+                        isRunning = false;
+                        break;
+                    case "-":
+                        sign = "-";
+                        isRunning = false;
+                        break;
+                    case "*":
+                        sign = "*";
+                        isRunning = false;
+                        break;
+                    case "/":
+                        sign = "/";
+                        isRunning = false;
+                        break;
+                    default:
+                        System.out.println("Błąd, podaj znak [+,-,*,/]");
+                        break;
+                }
+            }
+        }
+
+        System.out.println("podaj drugą liczbę");
+        scan = scanner.nextLine();
+        n2 =Float.parseFloat(scan);
+        float wynik =0;
+        if(sign.equals("+")){
+            wynik = n1+n2;
+        }else if(sign.equals("-")){
+            wynik = n1-n2;
+        }else  if(sign.equals("*")){
+            wynik = n1*n2;
+        }else if(sign.equals("/") && n2!=0){
+            wynik = (float)n1/n2;
+        }
+
+        if(n2!=0){
+            return wynik;
+        }else
+            return null;
+    }
+
+    public static void pattern(){
+        int height =5;
+        int lenght =5;
+        int tmp = height-1;
+        int countMax = 25;
+        int count =0;
+
+        for(int i= 0;i<height;i++) {
+            for (int j =0;j<lenght*height*2;j++){
+                if((j%(height*2)==tmp || j%(height*2)==height+i)){
+                    System.out.print("*");
+                    count++;
+
+                }else System.out.print(" ");
+            }
+            tmp--;
+            System.out.println();
+
+        }
+
+
+        System.out.println(count);
+    }
 }
