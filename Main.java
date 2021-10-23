@@ -12,8 +12,11 @@ public class Main {
 //        System.out.println(dzielniki(b));
 //        System.out.println(NWD(dzielniki(a), dzielniki(b)));
 
-        System.out.println(divisor2(a, b));
-        System.out.println(leastCommonMultiple(a, b));
+//        System.out.println(divisor2(a, b));
+//        System.out.println(leastCommonMultiple(a, b));
+
+        System.out.println(binarnaNaDziesietna(1000));
+        System.out.println(dziesietnaNaBinarna(1234));
 
     }
 
@@ -68,6 +71,38 @@ public class Main {
 
     public static int leastCommonMultiple(int a, int b) {
         return a * b / divisor2(a, b);
+
     }
+
+
+
+    public static int binarnaNaDziesietna(int i) {
+        int returnNumber = 0;
+        int exp = 0;
+        while (i != 0) {
+            int temp = i % 10;
+            returnNumber += temp * Math.pow(2, exp);
+            i = i / 10;
+            exp++;
+        }
+        return returnNumber;
+
+    }
+
+
+    public static String dziesietnaNaBinarna(int i) {
+        StringBuilder wynik = new StringBuilder();
+        int[] tab = new int[20];
+        int temp = 0;
+        while (i > 0) {
+            tab[temp++] = i % 2;
+            i = i / 2;
+        }
+        for (int j = temp - 1; j >= 0; j--) {
+            wynik.append(tab[j]);
+        }
+        return wynik.toString();
+    }
+
 
 }
