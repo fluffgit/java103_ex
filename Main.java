@@ -1,22 +1,24 @@
 package w4_23102021;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) {
         int b = 9;
         int a = 12;
-//        System.out.println(dzielniki(a));
-//        System.out.println(dzielniki(b));
-//        System.out.println(NWD(dzielniki(a), dzielniki(b)));
+        System.out.println(dzielniki(a));
+        System.out.println(dzielniki(b));
+        System.out.println(NWD(dzielniki(a), dzielniki(b)));
 
-//        System.out.println(divisor2(a, b));
-//        System.out.println(leastCommonMultiple(a, b));
+        System.out.println(NWD2(a, b));
+        System.out.println(leastCommonMultiple(a, b));
 
-        System.out.println(binarnaNaDziesietna(1000));
-        System.out.println(dziesietnaNaBinarna(1234));
+        System.out.println(binaryToDecimals(1000));
+        System.out.println(decimalsToBinary(1234));
+
+        System.out.println(primes(100));
+
 
     }
 
@@ -58,7 +60,9 @@ public class Main {
     }
 
 
-    public static int divisor2(int a, int b) {
+
+
+    public static int NWD2(int a, int b) {
         while (a != b) {
             if (a > b) {
                 a = a - b;
@@ -69,14 +73,16 @@ public class Main {
         return a;
     }
 
+
+
     public static int leastCommonMultiple(int a, int b) {
-        return a * b / divisor2(a, b);
+        return a * b / NWD2(a, b);
 
     }
 
 
 
-    public static int binarnaNaDziesietna(int i) {
+    public static int binaryToDecimals(int i) {
         int returnNumber = 0;
         int exp = 0;
         while (i != 0) {
@@ -90,7 +96,7 @@ public class Main {
     }
 
 
-    public static String dziesietnaNaBinarna(int i) {
+    public static String decimalsToBinary(int i) {
         StringBuilder wynik = new StringBuilder();
         int[] tab = new int[20];
         int temp = 0;
@@ -104,5 +110,24 @@ public class Main {
         return wynik.toString();
     }
 
+    public static ArrayList<Integer> primes(int i){
+        ArrayList<Integer> lista = new ArrayList<>();
+        for(int j =2;j<i;j++){
+            if(divisorCounters(j)<3){
+                lista.add(j);
+            }
+        }
+        return lista;
+    }
+
+    public static int divisorCounters(int i) {
+        int counter =0;
+        for (int j = 1; j <= i; j++) {
+            if (i % j == 0) {
+                counter++;
+            }
+        }
+        return counter;
+    }
 
 }
