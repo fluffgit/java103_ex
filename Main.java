@@ -2,6 +2,8 @@ package w4_23102021;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
 
@@ -24,6 +26,9 @@ public class Main {
 //        System.out.println(NValuesOfFibo(7));
 //        System.out.println(calculator());
         pattern(4);
+
+//        System.out.println(sneeze("test aaaaaaaaaa psik"));
+//        System.out.println(sumOfDigits(1234));
 
     }
 
@@ -258,6 +263,47 @@ public class Main {
         System.out.println(count);
     }
 
+    public static boolean sneeze(String userinput){
+        Pattern sneezPattern = Pattern.compile("a+ psik");
+        Matcher matcher = sneezPattern.matcher(userinput);
+        return matcher.find();
+    }
+
+    public static long silnia(long i) {
+        System.out.println("\n oblicz silnię z: " + i);
+
+        long wynik;
+        for(wynik = 1; i > 1; --i) {
+            wynik *= i;
+        }
+
+        return wynik;
+    }
+
+    public static int sumOfDigits(int i){
+        int sum =0;
+        while(i!=0){
+            sum +=i%10;
+            i/=10;
+        }
+
+        return sum;
+    }
+
+    public static String longestWord(){
+        String string="";
+        String input="";
+        ArrayList<String> lista = new ArrayList<>();
+
+        Scanner scanner = new Scanner(System.in);
+        input = scanner.nextLine();
+        while
+
+
+
+
+        return string;
+    }
 
 
 }
