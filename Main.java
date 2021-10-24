@@ -37,7 +37,7 @@ public class Main {
 //        System.out.println(sum1());
 //        System.out.println(NValuesOfFibo(7));
 //        System.out.println(calculator());
-        pattern(5,30);
+        pattern(10,999);
 
 //        System.out.println(sneeze("test aaaaaaaaaa psik"));
 //        System.out.println(sumOfDigits(1234));
@@ -265,20 +265,13 @@ public class Main {
 
     public static void pattern(int height,int count) {
         int l = height - 1;
-        int height2 =4;
-        int lenght2 = 4;
-
-
 
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < count; j++) {
                 if (j % (height * 2) == l) {
                     System.out.print("*");
-
                 } else if (j % (height * 2) == height + i) {
                     System.out.print("*");
-
-
                 } else {
                     System.out.print(" ");
                 }
