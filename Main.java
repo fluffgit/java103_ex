@@ -25,55 +25,6 @@ public class Main {
 //        System.out.println(calculator());
         pattern(4);
 
-//        int count =25;
-//        String s = "********************";
-//        int n = 4;
-//
-//
-//        if (n == 1)
-//        {
-//            // simply print the
-//            // string and return
-//            System.out.print(s);
-//            return;
-//        }
-//
-//        int row = 0;
-//        boolean down = true;
-//
-//        for (int i = 0; i < 25; i++)
-//        {
-//            // put characters in
-//            // the matrix
-//            a[row][i] = c[i];
-//
-//            // You have reached
-//            // the bottom
-//            if (row == n - 1)
-//                down = false;
-//            else if (row == 0)
-//                down = true;
-//
-//            if(down)
-//                row++;
-//            else
-//                row--;
-//        }
-//
-//        for (int i = 0; i < n; i++)
-//        {
-//            for (int j = 0; j < len; j++)
-//            {
-//                System.out.print(a[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-        String str = "THISPROBLEMISAWESOME";
-        int k = 4;
-
-        printZigZag(str, k);
-
-
     }
 
     public static int NWD(ArrayList<Integer> a, ArrayList<Integer> b) {
@@ -307,47 +258,6 @@ public class Main {
         System.out.println(count);
     }
 
-    public static void printZigZag(String str, int k)
-    {
-        // base case
-        if (str == null || k == 0) {
-            return;
-        }
 
-        // base case
-        if (k == 1)
-        {
-            System.out.print(str);
-            return;
-        }
-
-        // print first row
-        for (int i = 0; i < str.length(); i += (k-1)*2) {
-            System.out.print(str.charAt(i));
-        }
-
-        // print middle rows
-        for (int j = 1; j < k - 1; j++)
-        {
-            boolean down = true;
-            for (int i = j; i < str.length();)
-            {
-                System.out.print(str.charAt(i));
-                if (down) {     // going down
-                    i += (k - j - 1) * 2;
-                }
-                else {          // going up
-                    i += (k - 1) * 2 - (k - j - 1) * 2;
-                }
-
-                down = !down;   // switch direction
-            }
-        }
-
-        // print last row
-        for (int i = k - 1; i < str.length(); i += (k - 1) * 2) {
-            System.out.print(str.charAt(i));
-        }
-    }
 
 }
