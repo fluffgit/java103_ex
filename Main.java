@@ -37,7 +37,8 @@ public class Main {
 //        System.out.println(countSignsBetween());
 
 
-        checkIfDuplicates(returnArray());
+//        checkIfDuplicates(returnArray());
+        System.out.println(longestInterval(returnArray()));
 
     }
 
@@ -404,14 +405,29 @@ public class Main {
         return array;
     }
 
-    public static void checkIfDuplicates(int[] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = i + 1; j < arr.length; j++) {
-                if (i != j && arr[i] == arr[j])
-                    System.out.println(arr[i]);
+    public static void checkIfDuplicates(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = i + 1; j < array.length; j++) {
+                if (i != j && array[i] == array[j])
+                    System.out.println(array[i]);
             }
         }
     }
+    // nie skończone
+
+    public static int longestInterval(int[] array) {
+        int max = 0;
+        int temp = 1;
+        for (int i = 1; i < array.length; i++) {
+            if (array[i - 1] < array[i])
+                temp++;
+            else temp = 1;
+            if (max < temp) max = temp;
+        }
+        return max;
+    }
+
+
 
 
 }
