@@ -2,9 +2,7 @@ package w4_23102021;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,10 +32,12 @@ public class Main {
 //        System.out.println(sumOfDigits(1234));
 //        System.out.println(longestWord());
 //        System.out.println(emptySignProcent());
-        //       System.out.println(stutter());
 //        System.out.println(stutter());
-//        alfabet();
-        System.out.println(countSignsBetween());
+//        System.out.println(stutter());
+//        System.out.println(countSignsBetween());
+
+
+        checkIfDuplicates(returnArray());
 
     }
 
@@ -357,26 +357,27 @@ public class Main {
         scanner.close();
         return outcome.toString();
     }
-    
-    public static int countSignsBetween(){
+
+    public static int countSignsBetween() {
         String firstSign = null;
-        String lastSign = null;;
+        String lastSign = null;
+        ;
         char firstSignChar;
         char lastSignChar;
         Scanner scanner = new Scanner(System.in);
 
         Pattern ascii = Pattern.compile("/^[\\x00-\\x7F]*$/");
 
-        boolean regexMatch= false;
-        while(firstSign==null || firstSign.length()!=1||regexMatch){
+        boolean regexMatch = false;
+        while (firstSign == null || firstSign.length() != 1 || regexMatch) {
             System.out.println("podaj pierwszy pojedynczy znak");
             firstSign = scanner.nextLine();
             Matcher matcher = ascii.matcher(firstSign);
             regexMatch = matcher.matches();
         }
 
-        regexMatch= false;
-        while(lastSign==null || lastSign.length()!=1||regexMatch){
+        regexMatch = false;
+        while (lastSign == null || lastSign.length() != 1 || regexMatch) {
             System.out.println("podaj drugi znak");
             lastSign = scanner.nextLine();
             Matcher matcher = ascii.matcher(lastSign);
@@ -386,7 +387,37 @@ public class Main {
         firstSignChar = firstSign.charAt(0);
         lastSignChar = lastSign.charAt(0);
         scanner.close();
-        return (int)lastSignChar-(int) firstSignChar;
+        return (int) lastSignChar - (int) firstSignChar;
     }
 
+    //nie skończone
+    public static int[] returnArray() {
+        int size = 10;
+        int[] array = new int[size];
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("podaj " + size + " liczb");
+        String number = "";
+        for (int i = 0; i < size; i++) {
+            number = scanner.nextLine();
+            array[i] = Integer.parseInt(number);
+        }
+        return array;
+    }
+
+    public static void checkIfDuplicates(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (i != j && arr[i] == arr[j])
+                    System.out.println(arr[i]);
+            }
+        }
+    }
+
+
 }
+
+
+
+
+
+
