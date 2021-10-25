@@ -1,19 +1,9 @@
 package w4_23102021;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,14 +27,14 @@ public class Main {
 //        System.out.println(sum1());
 //        System.out.println(NValuesOfFibo(7));
 //        System.out.println(calculator());
-        pattern(10,999);
+//        pattern(4,22);
 
 //        System.out.println(sneeze("test aaaaaaaaaa psik"));
 //        System.out.println(sumOfDigits(1234));
 //        System.out.println(longestWord());
 //        System.out.println(emptySignProcent());
  //       System.out.println(stutter());
-//        test();
+        System.out.println(stutter());
 
     }
 
@@ -264,13 +254,12 @@ public class Main {
     }
 
     public static void pattern(int height,int count) {
-        int l = height - 1;
-
+        int l = height-1 ;
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < count; j++) {
                 if (j % (height * 2) == l) {
                     System.out.print("*");
-                } else if (j % (height * 2) == height + i) {
+                } else if (j % (height * 2) == height +i) {
                     System.out.print("*");
                 } else {
                     System.out.print(" ");
@@ -351,36 +340,26 @@ public class Main {
 
     }
 
-//    public static String stutter(){
-//        String test= " ";
-//        Scanner scanner = new Scanner(System.in);
-//        String input = scanner.nextLine();
-//        scanner.close();
-//        char[] tab = new char[input.length()];
-//        for(int i =0;i< tab.length;i++){
-//            tab[i]=input.charAt(i);
-//        }
-//        System.out.println(tab);
-//
-//        for(int j=0;j< tab.length;j++){
-//            if(){
-//                System.out.println(tab[j]);
-//            }
-//        }
-//
-//
-//        return "";
-//    }
 
-    public static void test(){
+
+    public static void calcDateBetweenDates(){
         Scanner scanner = new Scanner(System.in);
         LocalDate date1 = LocalDate.now();
         LocalDate date2 = LocalDate.parse(scanner.nextLine());
         long diffInDays = ChronoUnit.DAYS.between(date1, date2);
         System.out.println(diffInDays);
+    }
 
-
-
+    public static String stutter(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj zdanie");
+        String input =scanner.nextLine();
+        StringBuilder outcome = new StringBuilder();
+        String[] lista = input.split(" ");
+        for(String a: lista)
+            outcome.append(a).append(" ").append(a).append(" ");
+        scanner.close();
+        return outcome.toString();
     }
 
 }
