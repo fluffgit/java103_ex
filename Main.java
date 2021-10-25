@@ -38,7 +38,21 @@ public class Main {
 
 
 //        checkIfDuplicates(returnArray());
-        System.out.println(longestInterval(returnArray()));
+//       System.out.println(longestInterval(returnArray()));
+//        pobierzDane();
+//        System.out.println(zawiera(1,returnArray()));
+
+        //System.out.println(ostatni(returnArray()));
+        int[] tab = {};
+        System.out.println(checkIfDuplicates2(returnArray()));
+//        System.out.println(Arrays.toString(resize2(1,tab)));
+
+
+//        Integer[] tab = new Integer[10];
+//        tab[0]=1;
+//        tab[1]=2;
+//        System.out.println(Arrays.toString(tab));
+//        System.out.println(ostatni(tab));
 
     }
 
@@ -392,9 +406,9 @@ public class Main {
     }
 
     //nie skończone
-    public static int[] returnArray() {
-        int size = 10;
-        int[] array = new int[size];
+    public static Integer[] returnArray() {
+        int size = 6;
+        Integer[] array = new Integer[size];
         Scanner scanner = new Scanner(System.in);
         System.out.println("podaj " + size + " liczb");
         String number = "";
@@ -406,14 +420,50 @@ public class Main {
     }
 
     public static void checkIfDuplicates(int[] array) {
+        ArrayList<Integer> list = new ArrayList<>();
         for (int i = 0; i < array.length; i++) {
             for (int j = i + 1; j < array.length; j++) {
                 if (i != j && array[i] == array[j])
-                    System.out.println(array[i]);
+                    if (!(list.contains(array[j]))) {
+                        list.add(array[j]);
+                    }
             }
         }
+        System.out.println(list);
     }
-    // nie skończone
+
+    public static boolean checkIfDuplicates2(Integer[] array) {
+        Integer[] arr = new Integer[0];
+        for (int i = 0; i < array.length; i++) {
+            for (int j = i + 1; j < array.length; j++) {
+                if (i != j && array[i] == array[j]) {
+                    int k = array[j];
+                    //tutaj jest problem
+                    if ((zawiera(k, arr))) {
+                        resize2(array[j], arr);
+                    }
+                    //tutaj
+                }
+            }
+        }
+        System.out.println(Arrays.toString(arr));
+        return true;
+    }
+
+    public static boolean zawiera(int i, Integer[] arr) {
+        for (int j = 0; j < arr.length; j++) {
+            if (arr[j] == i) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Integer[] resize2(int i, Integer[] arr) {
+        Integer[] tab = new Integer[arr.length + 1];
+        tab[tab.length - 1] = i;
+        return tab;
+    }
 
     public static int longestInterval(int[] array) {
         int max = 0;
@@ -427,7 +477,28 @@ public class Main {
         return max;
     }
 
-
+    //kamila
+    public static void pobierzDane(int z) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj 10 liczb:");
+        final List<Integer> lista = new ArrayList<>();
+        for (int i = 0; i < z; i++) {
+            lista.add(scanner.nextInt());
+        }
+        ArrayList<Integer> listaZPowtorzeniami = new ArrayList<>();
+        for (int i = 0; i < lista.size(); i++) {
+            for (int j = 0; j < lista.size(); j++) {
+                Integer tmp1 = lista.get(i);
+                Integer tmp2 = lista.get(j);
+                if (i != j && tmp1.equals(tmp2)) {
+                    if (!listaZPowtorzeniami.contains(tmp1)) {
+                        listaZPowtorzeniami.add(tmp1);
+                    }
+                }
+            }
+        }
+        System.out.println(listaZPowtorzeniami);
+    }
 
 
 }
