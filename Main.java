@@ -3,6 +3,7 @@ package w4_23102021;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,8 +34,10 @@ public class Main {
 //        System.out.println(sumOfDigits(1234));
 //        System.out.println(longestWord());
 //        System.out.println(emptySignProcent());
- //       System.out.println(stutter());
-        System.out.println(stutter());
+        //       System.out.println(stutter());
+//        System.out.println(stutter());
+//        alfabet();
+        System.out.println(countSignsBetween());
 
     }
 
@@ -76,8 +79,6 @@ public class Main {
     }
 
 
-
-
     public static int NWD2(int a, int b) {
         while (a != b) {
             if (a > b) {
@@ -90,12 +91,10 @@ public class Main {
     }
 
 
-
     public static int leastCommonMultiple(int a, int b) {
         return a * b / NWD2(a, b);
 
     }
-
 
 
     public static int binaryToDecimals(int i) {
@@ -126,10 +125,10 @@ public class Main {
         return wynik.toString();
     }
 
-    public static ArrayList<Integer> primes(int i){
+    public static ArrayList<Integer> primes(int i) {
         ArrayList<Integer> lista = new ArrayList<>();
-        for(int j =2;j<i;j++){
-            if(divisorCounters(j)<3){
+        for (int j = 2; j < i; j++) {
+            if (divisorCounters(j) < 3) {
                 lista.add(j);
             }
         }
@@ -137,7 +136,7 @@ public class Main {
     }
 
     public static int divisorCounters(int i) {
-        int counter =0;
+        int counter = 0;
         for (int j = 1; j <= i; j++) {
             if (i % j == 0) {
                 counter++;
@@ -146,31 +145,31 @@ public class Main {
         return counter;
     }
 
-    public static ArrayList<Integer> printNumbersFromOneToInput(){
+    public static ArrayList<Integer> printNumbersFromOneToInput() {
         ArrayList<Integer> lista = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj zakes drukowanych libcz");
         int s1 = scanner.nextInt();
-        for(int i=1;i<=s1;i++){
+        for (int i = 1; i <= s1; i++) {
             lista.add(i);
         }
         return lista;
     }
 
-    public static float sum1(){
-        float sum =0;
+    public static float sum1() {
+        float sum = 0;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj n-ty wyraz ciągu harmonicznego");
-        int j= scanner.nextInt();
-        for(int i =1;i<=j;i++){
-            sum +=(float)1/i;
+        int j = scanner.nextInt();
+        for (int i = 1; i <= j; i++) {
+            sum += (float) 1 / i;
         }
 
         return sum;
     }
 
 
-    public static int NValuesOfFibo(int n){
+    public static int NValuesOfFibo(int n) {
         int a = 0, b = 1, licz = 0;
         while (licz < n) {
             int c = b + a;
@@ -182,32 +181,30 @@ public class Main {
     }
 
 
-    public static void fibo1(int n)
-    {
+    public static void fibo1(int n) {
         int a = 0, b = 1;
-        for(int i=0;i<n;i++)
-        {
+        for (int i = 0; i < n; i++) {
             b += a;
-            a = b-a;
+            a = b - a;
             System.out.println(a);
         }
     }
 
-    public static Float calculator(){
+    public static Float calculator() {
 
-        float n1=0;
-        float n2=0;
+        float n1 = 0;
+        float n2 = 0;
         Scanner scanner = new Scanner(System.in);
         System.out.println("podaj pierwszą liczbę");
         String scan = scanner.nextLine();
-        n1 =Float.parseFloat(scan);
+        n1 = Float.parseFloat(scan);
 
         String sign = "";
         boolean isRunning = true;
         System.out.println("podaj znak");
 
-            while (isRunning) {
-                if(scanner.hasNext()) {
+        while (isRunning) {
+            if (scanner.hasNext()) {
                 sign = scanner.nextLine();
                 switch (sign) {
                     case "+":
@@ -235,31 +232,31 @@ public class Main {
 
         System.out.println("podaj drugą liczbę");
         scan = scanner.nextLine();
-        n2 =Float.parseFloat(scan);
-        float wynik =0;
-        if(sign.equals("+")){
-            wynik = n1+n2;
-        }else if(sign.equals("-")){
-            wynik = n1-n2;
-        }else  if(sign.equals("*")){
-            wynik = n1*n2;
-        }else if(sign.equals("/") && n2!=0){
-            wynik = (float)n1/n2;
+        n2 = Float.parseFloat(scan);
+        float wynik = 0;
+        if (sign.equals("+")) {
+            wynik = n1 + n2;
+        } else if (sign.equals("-")) {
+            wynik = n1 - n2;
+        } else if (sign.equals("*")) {
+            wynik = n1 * n2;
+        } else if (sign.equals("/") && n2 != 0) {
+            wynik = (float) n1 / n2;
         }
 
-        if(n2!=0){
+        if (n2 != 0) {
             return wynik;
-        }else
+        } else
             return null;
     }
 
-    public static void pattern(int height,int count) {
-        int l = height-1 ;
+    public static void pattern(int height, int count) {
+        int l = height - 1;
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < count; j++) {
                 if (j % (height * 2) == l) {
                     System.out.print("*");
-                } else if (j % (height * 2) == height +i) {
+                } else if (j % (height * 2) == height + i) {
                     System.out.print("*");
                 } else {
                     System.out.print(" ");
@@ -271,7 +268,7 @@ public class Main {
 
     }
 
-    public static boolean sneeze(String userinput){
+    public static boolean sneeze(String userinput) {
         Pattern sneezPattern = Pattern.compile("a+ psik");
         Matcher matcher = sneezPattern.matcher(userinput);
         return matcher.find();
@@ -281,45 +278,45 @@ public class Main {
         System.out.println("\n oblicz silnię z: " + i);
 
         long wynik;
-        for(wynik = 1; i > 1; --i) {
+        for (wynik = 1; i > 1; --i) {
             wynik *= i;
         }
 
         return wynik;
     }
 
-    public static int sumOfDigits(int i){
-        int sum =0;
-        while(i!=0){
-            sum +=i%10;
-            i/=10;
+    public static int sumOfDigits(int i) {
+        int sum = 0;
+        while (i != 0) {
+            sum += i % 10;
+            i /= 10;
         }
 
         return sum;
     }
 
-    public static String longestWord(){
-        String string="";
-        String input="";
+    public static String longestWord() {
+        String string = "";
+        String input = "";
         boolean run = true;
         //ArrayList<String> lista = new ArrayList<>();
-        int counter=0;
+        int counter = 0;
         Scanner scanner = new Scanner(System.in);
 
-        while(run){
-            if(scanner.hasNext()) {
+        while (run) {
+            if (scanner.hasNext()) {
                 input = scanner.nextLine();
                 switch (input) {
                     case "starczy":
                         run = false;
                         break;
                     default:
-                        if(!(input.length()==0)){
-                        //    lista.add(input);
-                        } else{
+                        if (!(input.length() == 0)) {
+                            //    lista.add(input);
+                        } else {
                             System.out.println("nie podano słowa");
                         }
-                        if(input.length()>counter){
+                        if (input.length() > counter) {
                             counter = input.length();
                             string = input;
                         }
@@ -332,17 +329,16 @@ public class Main {
         return string;
     }
 
-    public static double emptySignProcent(){
+    public static double emptySignProcent() {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         scanner.close();
-        return  ((double)(input.length() - input.replaceAll(" ", "").length())/input.length())*100;
+        return ((double) (input.length() - input.replaceAll(" ", "").length()) / input.length()) * 100;
 
     }
 
 
-
-    public static void calcDateBetweenDates(){
+    public static void calcDateBetweenDates() {
         Scanner scanner = new Scanner(System.in);
         LocalDate date1 = LocalDate.now();
         LocalDate date2 = LocalDate.parse(scanner.nextLine());
@@ -350,16 +346,64 @@ public class Main {
         System.out.println(diffInDays);
     }
 
-    public static String stutter(){
+    public static String stutter() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj zdanie");
-        String input =scanner.nextLine();
+        String input = scanner.nextLine();
         StringBuilder outcome = new StringBuilder();
         String[] lista = input.split(" ");
-        for(String a: lista)
+        for (String a : lista)
             outcome.append(a).append(" ").append(a).append(" ");
         scanner.close();
         return outcome.toString();
+    }
+
+    public static void alfabet() {
+        System.out.println("\nalfabet");
+        for (int i = 65; i <= 122; i++) {
+            if ((i >= 65 && i <= 90) || (i > 96 && i <= 122)) {
+                System.out.print((char) i + ", ");
+            }
+        }
+        System.out.println("");
+    }
+
+
+    public static int countSignsBetween(){
+        String firstSign = null;
+        String lastSign = null;;
+        char firstSignChar;
+        char lastSignChar;
+        Scanner scanner = new Scanner(System.in);
+
+        Pattern ascii = Pattern.compile("/^[\\x00-\\x7F]*$/");
+
+        boolean regexMatch= false;
+        while(firstSign==null || firstSign.length()!=1||regexMatch){
+            System.out.println("podaj pierwszy pojedynczy znak");
+            firstSign = scanner.nextLine();
+            Matcher matcher = ascii.matcher(firstSign);
+            regexMatch = matcher.matches();
+        }
+
+        regexMatch= false;
+        while(lastSign==null || lastSign.length()!=1||regexMatch){
+            System.out.println("podaj drugi znak");
+            lastSign = scanner.nextLine();
+            Matcher matcher = ascii.matcher(lastSign);
+            regexMatch = matcher.matches();
+        }
+
+        firstSignChar = firstSign.charAt(0);
+        lastSignChar = lastSign.charAt(0);
+        scanner.close();
+        return (int)lastSignChar-(int) firstSignChar;
+    }
+
+    public static boolean sneeze2(String userinput) {
+        Pattern sneezPattern = Pattern.compile("a+ psik");
+        Matcher matcher = sneezPattern.matcher(userinput);
+        return matcher.find();
     }
 
 }
