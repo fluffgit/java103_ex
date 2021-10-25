@@ -357,18 +357,7 @@ public class Main {
         scanner.close();
         return outcome.toString();
     }
-
-    public static void alfabet() {
-        System.out.println("\nalfabet");
-        for (int i = 65; i <= 122; i++) {
-            if ((i >= 65 && i <= 90) || (i > 96 && i <= 122)) {
-                System.out.print((char) i + ", ");
-            }
-        }
-        System.out.println("");
-    }
-
-
+    
     public static int countSignsBetween(){
         String firstSign = null;
         String lastSign = null;;
@@ -398,12 +387,6 @@ public class Main {
         lastSignChar = lastSign.charAt(0);
         scanner.close();
         return (int)lastSignChar-(int) firstSignChar;
-    }
-
-    public static boolean sneeze2(String userinput) {
-        Pattern sneezPattern = Pattern.compile("a+ psik");
-        Matcher matcher = sneezPattern.matcher(userinput);
-        return matcher.find();
     }
 
 }
