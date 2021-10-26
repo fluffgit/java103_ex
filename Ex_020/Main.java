@@ -1,42 +1,52 @@
 package w4_23102021.Ex_020;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        run();
+        if(isMature()) run();
     }
 
-    public static void run(){
-        int goal =generateRandom();
+    public static void run() {
+        int goal = generateRandom();
         int min = 0;
-        int max =100;
+        int max = 100;
         System.out.println("Podaj liczbę z zakresu [0,100]");
         System.out.println(goal);
         Scanner scanner = new Scanner(System.in);
-        int choice=0;
+        int choice = 0;
         int counter = 0;
-        while(choice!=goal){
-            choice =scanner.nextInt();
+        while (choice != goal && counter<4) {
+            choice = scanner.nextInt();
             counter++;
-            if(choice>goal){
+            if (choice > goal) {
                 max = choice;
-                System.out.println("za dużo, max: "+ max+", min "+min);
-
-            }else if(choice<goal){
+                System.out.println("za dużo, max: " + max + ", min " + min);
+            } else if (choice < goal) {
                 min = choice;
-                System.out.println("za mało, max: "+ max+", min "+min);
-
-            }else{
-                System.out.println("wygrałeś, szukana liczba to "+ goal);
+                System.out.println("za mało, max: " + max + ", min " + min);
+            } else {
+                System.out.println("wygrałeś, szukana liczba to " + goal);
             }
         }
-        System.out.println("Ilość prób: "+counter);
+        System.out.println("Ilość prób: " + counter +" przegrałes");
     }
-    public static int generateRandom(){
-        int max =100;
-        int min =1;
-        return (int)(Math.random()*(max-min)+min);
+
+    public static int generateRandom() {
+        int max = 100;
+        int min = 1;
+        return (int) (Math.random() * (max - min) + min);
+    }
+
+    public static boolean isMature(){
+        LocalDate date1 = LocalDate.now();
+        Scanner scanner = new Scanner(System.in);
+        LocalDate date2 = LocalDate.parse(scanner.nextLine());
+        if(ChronoUnit.YEARS.between(date2, date1)>18){
+            return true;
+        }else return false;
     }
 
 }

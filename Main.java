@@ -45,7 +45,8 @@ public class Main {
         //System.out.println(ostatni(returnArray()));
         int[] tab = {};
         System.out.println(checkIfDuplicates2(returnArray()));
-//        System.out.println(Arrays.toString(resize2(1,tab)));
+//        System.out.println(zawiera(1,returnArray()));
+////        System.out.println(Arrays.toString(resize2(1,tab)));
 
 
 //        Integer[] tab = new Integer[10];
@@ -433,21 +434,24 @@ public class Main {
     }
 
     public static boolean checkIfDuplicates2(Integer[] array) {
+        int k =0;
+        boolean test =false;
         Integer[] arr = new Integer[0];
         for (int i = 0; i < array.length; i++) {
             for (int j = i + 1; j < array.length; j++) {
                 if (i != j && array[i] == array[j]) {
-                    int k = array[j];
-                    //tutaj jest problem
-                    if ((zawiera(k, arr))) {
+                    k = array[j];
+                    System.out.println(k);
+                    if (!(zawiera(k, arr))) {
                         resize2(array[j], arr);
+                        test = true;
                     }
                     //tutaj
                 }
             }
         }
         System.out.println(Arrays.toString(arr));
-        return true;
+        return test;
     }
 
     public static boolean zawiera(int i, Integer[] arr) {
