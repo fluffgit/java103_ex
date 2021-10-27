@@ -10,9 +10,9 @@ import java.util.regex.Pattern;
 public class Main {
 
     public static void main(String[] args) {
-        if (isMature()){
+        if (isMature()) {
             run();
-        }else{
+        } else {
             System.out.println("nie jesteś pełnoletni");
         }
     }
@@ -23,7 +23,7 @@ public class Main {
         return (int) (Math.random() * (max - min) + min);
     }
 
-    public static void run(){
+    public static void run() {
         int goal = generateRandom();
         Pattern number = Pattern.compile("^\\d+$");
         Scanner scanner = new Scanner(System.in);
@@ -32,24 +32,24 @@ public class Main {
         int max = 100;
         boolean regexMatch = true;
         boolean run = true;
-        System.out.println("szukamy "+goal);
+        System.out.println("szukamy " + goal);
 
-        while (run ) {
+        while (run) {
             System.out.println("podaj liczbe do sprawdzenia");
-            System.out.println(min+" "+max);
+            System.out.println(min + " " + max);
             choice = scanner.nextLine();
             Matcher matcher = number.matcher(choice);
             regexMatch = matcher.matches();
 
             if (regexMatch) {
                 System.out.println("liczba");
-                if(Integer.parseInt(choice)>goal){
+                if (Integer.parseInt(choice) > goal) {
                     max = Integer.parseInt(choice);
-                    System.out.println(min+" "+max);
-                }else if (Integer.parseInt(choice)<goal) {
+                    System.out.println(min + " " + max);
+                } else if (Integer.parseInt(choice) < goal) {
                     min = Integer.parseInt(choice);
                     System.out.println(min + " " + max);
-                }else{
+                } else {
                     Integer.parseInt(choice);
                     System.out.println("wygrałes:" + choice);
                     run = false;
@@ -60,7 +60,7 @@ public class Main {
 
     }
 
-    public static boolean isMature(){
+    public static boolean isMature() {
         System.out.println("Podaj datę urodzenia");
         LocalDate date1 = LocalDate.now();
         Scanner scanner = new Scanner(System.in);
