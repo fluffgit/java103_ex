@@ -71,7 +71,7 @@ public class Main {
     }
 
     public static ArrayList<Travel> dataToArray() throws IOException {
-        Scanner scanner = new Scanner(Path.of("3.csv"));
+        Scanner scanner = new Scanner(Path.of("C:\\Users\\Marcin\\IdeaProjects\\PodstawyJava\\src\\w4_23102021\\Rowery\\3.csv"));
         ArrayList<Travel> travels = new ArrayList<>();
 
         while(scanner.hasNext()){
