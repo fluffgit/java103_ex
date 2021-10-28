@@ -42,7 +42,6 @@ public class Main {
             regexMatch = matcher.matches();
 
             if (regexMatch) {
-                System.out.println("liczba");
                 if (Integer.parseInt(choice) > goal) {
                     max = Integer.parseInt(choice);
                     System.out.println(min + " " + max);
@@ -50,7 +49,6 @@ public class Main {
                     min = Integer.parseInt(choice);
                     System.out.println(min + " " + max);
                 } else {
-                    Integer.parseInt(choice);
                     System.out.println("wygrałes:" + choice);
                     run = false;
                 }
