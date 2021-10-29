@@ -1,7 +1,6 @@
 package w4_23102021.Rowery;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 
 public class Calculation {
 
@@ -81,6 +80,38 @@ public class Calculation {
 
 
         return dates;
+    }
+
+    public String findPopular2(ArrayList<Travel> travels) {
+        //odchudzone
+        //buduje Arraylist ze String-ów do sprawdzenia
+        // przy pomocy Iteratora bo tak fajnie :)
+        ArrayList<String> test = new ArrayList<>();
+        Iterator<Travel> iter = travels.iterator();
+        while (iter.hasNext()) {
+            test.add(iter.next().getBikeNumber());
+        }
+        // buduje HashMapę String Integer >> String numer roweru, Integer licznik
+        // For each przelatuje elementy i dodaje do stringcout jeżeli count !=0
+        Map<String, Integer> stringsCount = new HashMap<String, Integer>();
+        for (String string : test) {
+            Integer count = stringsCount.get(string);
+            // dlaczego wywala się bez if poniżej??
+            if (count == null){
+                count = 0;
+            }
+            count++;
+            stringsCount.put(string, count);
+        }
+        // Map.Entery w For each przelauje przez elementy (enterySet) Mapy stringCount
+        // jeżeli wartość mostReapeated < niż wartośc elementu e podstaw e do most repeated
+        // zwróć wartość Map.Entery przez getKey();
+        Map.Entry<String, Integer> mostRepeated = null;
+        for (Map.Entry<String, Integer> e : stringsCount.entrySet()) {
+            if (mostRepeated == null || mostRepeated.getValue() < e.getValue())
+                mostRepeated = e;
+        }
+        return mostRepeated.getKey();
     }
 
 
