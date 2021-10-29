@@ -4,22 +4,28 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
+import java.util.function.BinaryOperator;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         ArrayList<Travel> travels = dataToArray();
-        System.out.println("Avg ride "+avgRide(travels));
-        System.out.println("Rides in minutes "+sumRidesTime(travels));
-
         Calculation calculation = new Calculation(travels);
-        // chciałbym przenieść sumRideTime do calculation, jak?
+
+//        System.out.println(calculation.returnSumRidesTime(travels));
+//        System.out.println(calculation.returnAvgRideTimeMINUTES(travels));
+//        System.out.println(calculation.howManyBikesInUse(travels));
+//        //System.out.println(calculation.returnTime(travels));
+//        System.out.println(findPopular(travels));
+        System.out.println(findPopular2(travels));
+ //       System.out.println(test4());
+        //System.out.println(test5(travels));
 
 
     }
 
-    private static Travel readData(String input){
+    private static Travel readData(String input) {
         String[] split = input.split(",");
         String id = split[0];
         String uid = split[1];
@@ -31,10 +37,10 @@ public class Main {
         String starStation = split[5];
         String endStation = split[6];
 
-        return new Travel(id,uid,bikeNumber,startDateObject,endDateObject,starStation,endStation);
+        return new Travel(id, uid, bikeNumber, startDateObject, endDateObject, starStation, endStation);
     }
 
-    private static LocalDateTime converDatetoLDT(String str){
+    private static LocalDateTime converDatetoLDT(String str) {
         //stary format daty z początku nextbike >>01.03.2016 00:33
         StringBuilder dateFinal = new StringBuilder("");
         dateFinal.append(str, 6, 10).append("-").append(str, 3, 5).append("-").append(str, 0, 2).append(" ").append(str, 11, 16);
@@ -43,38 +49,20 @@ public class Main {
 
     }
 
-    private static LocalDateTime converDatetoLDT2(String str){
+    private static LocalDateTime converDatetoLDT2(String str) {
         // format daty >> 2019-03-20 13:11:28
         StringBuilder dateFinal = new StringBuilder("");
-        dateFinal.append(str,0,16);
+        dateFinal.append(str, 0, 16);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return LocalDateTime.parse(dateFinal, formatter);
 
-    }
-
-    public static int avgRide(ArrayList<Travel> travels){
-        int count  =0;
-        int sum =0;
-        for(Travel e: travels){
-            sum+=e.calcMinutesBeetweenStartEnd();
-            count++;
-        }
-        return sum/count;
-    }
-
-    public static int sumRidesTime(ArrayList<Travel> travels){
-        int sum =0;
-        for(Travel e: travels){
-            sum+=e.calcMinutesBeetweenStartEnd();
-        }
-        return sum;
     }
 
     public static ArrayList<Travel> dataToArray() throws IOException {
         Scanner scanner = new Scanner(Path.of("C:\\Users\\Marcin\\IdeaProjects\\PodstawyJava\\src\\w4_23102021\\Rowery\\3.csv"));
         ArrayList<Travel> travels = new ArrayList<>();
 
-        while(scanner.hasNext()){
+        while (scanner.hasNext()) {
             String nextLineTravel = scanner.nextLine();
             Travel travel = readData(nextLineTravel);
             travels.add(travel);
@@ -83,6 +71,72 @@ public class Main {
 
     }
 
+    public static String findPopular(ArrayList<Travel> travels) {
+        ArrayList<String> test = new ArrayList<>();
+        Iterator<Travel> iter = travels.iterator();
+        while (iter.hasNext()) {
+            test.add(iter.next().getBikeNumber());
+        }
+        Map<String, Integer> stringsCount = new HashMap<String, Integer>();
+        for (String string : test) {
+            if (string.length() > 0) {
+                string = string.toLowerCase();
+                Integer count = stringsCount.get(string);
+                if (count == null) count = new Integer(0);
+                count++;
+                stringsCount.put(string, count);
+            }
+        }
+        Map.Entry<String, Integer> mostRepeated = null;
+        for (Map.Entry<String, Integer> e : stringsCount.entrySet()) {
+            if (mostRepeated == null || mostRepeated.getValue() < e.getValue())
+                mostRepeated = e;
+        }
+        try {
+            return mostRepeated.getKey();
+        } catch (NullPointerException e) {
+            System.out.println("Cannot find most popular value at the List. Maybe all strings are empty");
+            return "";
+        }
 
+    }
+
+
+
+    public static String findPopular2(ArrayList<Travel> travels) {
+        //odchudzone 
+        //buduje Arraylist ze String-ów do sprawdzenia
+        // przy pomocy Iteratora bo tak fajnie :)
+        ArrayList<String> test = new ArrayList<>();
+        Iterator<Travel> iter = travels.iterator();
+        while (iter.hasNext()) {
+            test.add(iter.next().getBikeNumber());
+        }
+        // buduje HashMapę String Integer >> String numer roweru, Integer licznik
+        // For each przelatuje elementy i dodaje do stringcout jeżeli count !=0
+        Map<String, Integer> stringsCount = new HashMap<String, Integer>();
+        for (String string : test) {
+                Integer count = stringsCount.get(string);
+                // dlaczego wywala się bez if poniżej??
+                if (count == null){
+                    count = 0;
+                }
+                count++;
+                stringsCount.put(string, count);
+        }
+        // Map.Entery w For each przelauje przez elementy (enterySet) Mapy stringCount
+        // jeżeli wartość mostReapeated < niż wartośc elementu e podstaw e do most repeated
+        // zwróć wartość Map.Entery przez getKey();
+        Map.Entry<String, Integer> mostRepeated = null;
+        for (Map.Entry<String, Integer> e : stringsCount.entrySet()) {
+            if (mostRepeated == null || mostRepeated.getValue() < e.getValue())
+                mostRepeated = e;
+        }
+            return mostRepeated.getKey();
+    }
 
 }
+
+
+
+
